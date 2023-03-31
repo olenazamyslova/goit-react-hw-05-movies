@@ -11,6 +11,9 @@ export const Box = styled.div`
 export const Title = styled.h2`
   margin-top: 15px;
 `;
+export const Image = styled.img`
+  width: auto;
+`;
 
 export const Score = styled.p`
   margin-top: 15px;

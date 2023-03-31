@@ -1,5 +1,6 @@
 import {
   Box,
+  Image,
   Genres,
   GenresTitle,
   Overview,
@@ -22,7 +23,7 @@ export const FilmCard = ({
   return (
     <Box>
       <div>
-        <img
+        <Image
           src={`https://image.tmdb.org/t/p/w500${poster_path}`}
           alt={tagline}
           width="400px"
