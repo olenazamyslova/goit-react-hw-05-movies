@@ -27,7 +27,7 @@ export const Reviews = () => {
     <>
       {loader && <PuffLoader />}
       <List>
-        {reviews.length &&
+        {reviews.length > 0 &&
           reviews.map(review => {
             return (
               <li key={review.author}>

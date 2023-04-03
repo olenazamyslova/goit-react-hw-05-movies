@@ -9,26 +9,28 @@ import toast, { Toaster } from 'react-hot-toast';
 export const SearchMovies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const params = searchParams.get('query');
-  const [query, setQuery] = useState(() => (params ? params : ''));
   const [movies, setMovies] = useState([]);
   const location = useLocation();
   const [loader, setLoader] = useState(false);
 
   useEffect(() => {
+    if (!params) {
+      return;
+    }
     const fetchSearchMovies = () => {
       try {
         setLoader(prevState => !prevState);
-        getSearchMovie(query).then(resp => setMovies(resp.results));
+        getSearchMovie(params).then(resp => setMovies(resp.results));
       } catch (error) {
         console.log(error);
       } finally {
         setLoader(prevState => !prevState);
       }
     };
-    if (query) {
+    if (params) {
       fetchSearchMovies();
     }
-  }, [query]);
+  }, [params]);
 
   return (
     <>
@@ -43,15 +45,13 @@ export const SearchMovies = () => {
             );
             return;
           }
-          console.log(values);
-          setQuery(values.query);
           setSearchParams(values);
           actions.resetForm();
         }}
       >
         <SearchForm>
           <Input type="text" name="query" autoComplete="off" />
-          <button type="submi">Search</button>
+          <button type="submit">Search</button>
         </SearchForm>
       </Formik>
       <ul>
